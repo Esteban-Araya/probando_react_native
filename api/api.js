@@ -10,8 +10,8 @@ const axiosInstance = axios.create({
   
 AxiosInterceptor(axiosInstance)
 
-export async function callFetch(path, method, body = null ){
-  console.log("AAAa");
+export async function callApi(path, method, body = null ){
+
   try{
     const response = await axiosInstance({
         url: path, 

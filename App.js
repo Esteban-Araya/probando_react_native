@@ -2,15 +2,18 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import {Navigation} from "./components/Navigation"
 import {SafeAreaProvider} from "react-native-safe-area-context"
+import { UserProvider } from './providers/UserProviders';
 
 export default function App() {
    
   return ( 
-    <SafeAreaProvider> 
-      <View style={styles.container}>
-        <StatusBar style="dark" />
-          <Navigation />
-      </View>
+    <SafeAreaProvider>
+      <UserProvider> 
+        <View style={styles.container}>
+          <StatusBar style="dark" />
+            <Navigation />
+        </View>
+      </UserProvider>
     </SafeAreaProvider>  
   );
 }

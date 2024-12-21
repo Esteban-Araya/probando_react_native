@@ -6,6 +6,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { FormikInputValue } from "../components/FormikInput"
 import { useLogin } from "../api/auth/login";
 import { useNavigation } from "@react-navigation/native";
+import { useUserSetContext } from "../providers/UserProviders";
+
 const initialValues = {
     email: "",
     password: ""
@@ -15,13 +17,18 @@ export function Login(){
     const Insets = useSafeAreaInsets()
     const navigation = useNavigation()
     // const [loading, setLoading] = useState(true)
+    const setUser = useUserSetContext()
 
     async function submit(values){
 
         const { status} = await useLogin(values) 
 
-        if (status == 200){          
+        if (status == 200){   
+            console.log("(values)");
+            console.log(values);
+            setUser(values)      
             navigation.navigate("feed")
+
         }
     }  
     

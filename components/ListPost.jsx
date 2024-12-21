@@ -7,7 +7,7 @@ import { Loading } from './Loading';
 export function ListPost(){
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
-   
+    
     const getData = async()=>{
 
        const {data} = await GetPosts() 

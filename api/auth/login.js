@@ -1,4 +1,4 @@
-import { callFetch } from "../api";
+import { callApi } from "../api";
 
 export function useLogin(values){
 
@@ -6,5 +6,5 @@ export function useLogin(values){
         email: values.email, 
         password: values.password 
     }
-    return callFetch("/user/login", "POST", body)
+    return callApi("/user/login", "POST", body)
 }

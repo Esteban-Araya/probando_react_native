@@ -1,6 +1,6 @@
-import { callFetch } from "../api";
+import { callApi } from "../api";
 
 
 export function GetPosts(){
-    return callFetch("/post", "GET")
+    return callApi("/post", "GET")
 }

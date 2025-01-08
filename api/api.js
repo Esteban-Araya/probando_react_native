@@ -2,7 +2,7 @@ import axios from 'axios';
 import { AxiosInterceptor } from './interceptors/axios.interceptors';
 
 const axiosInstance = axios.create({
-    baseURL: "http://192.168.0.17:8080", // Replace with your API's base URL
+    baseURL: "http://192.168.1.47:8080", // Replace with your API's base URL
     headers: {
       "Content-Type": "application/json",
     },
@@ -11,7 +11,6 @@ const axiosInstance = axios.create({
 AxiosInterceptor(axiosInstance)
 
 export async function callApi(path, method, body = null ){
-
   try{
     const response = await axiosInstance({
         url: path, 
@@ -24,7 +23,7 @@ export async function callApi(path, method, body = null ){
     
     return {data, status}   
   }catch (error){
-
+    console.log("error: ", error.data);
     const status = await error.response.status;
     const data = await error.response.data;
 

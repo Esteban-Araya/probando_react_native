@@ -1,13 +1,13 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { RefreshControl, FlatList, StyleSheet, View, Alert } from 'react-native';
 import { GetPosts } from '../api/posts/getPost'
 import {Post} from "./Post"
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Loading } from './Loading';
 
 export function ListPost(){
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
-    
+    const [refreshing, setRefreshing] = useState(false);
     const getData = async()=>{
 
        const {data} = await GetPosts() 
@@ -20,7 +20,15 @@ export function ListPost(){
         getData()
     },[])  
  
-    
+    const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        
+        await getData()
+        
+        setRefreshing(false);
+
+      }, []);
+
     return(
         <View style={styles.container}>
             {loading ? (
@@ -32,6 +40,7 @@ export function ListPost(){
                     data={data}
                     keyExtractor={(user) => user.id} 
                     renderItem={({item}) => <Post user={item} /> }
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
                 />
             )} 
         </View>    

@@ -5,6 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Welcome } from "./Welcome";
 import { ListPost } from "./ListPost";
 import { Login } from "../screen/Login";
+import { Singin } from "../screen/Singin";
+import { CreatePost } from "../screen/CreatePost";
 
 const Stack = createNativeStackNavigator() 
 
@@ -16,6 +18,8 @@ function StackGroup(){
             })}
         >
             <Stack.Screen name="login" component={Login}/>
+            <Stack.Screen name="singin" component={Singin}/>
+
             <Stack.Screen name="feed" component={TabGroup}/>
         </Stack.Navigator>
     )
@@ -25,9 +29,11 @@ const Tab = createBottomTabNavigator();
 
 export function TabGroup() {
     return (
-        <Tab.Navigator initialRouteName="welcome">
+        <Tab.Navigator initialRouteName="create post">
             <Tab.Screen name="welcome" component={Welcome} />
             <Tab.Screen name="lista" component={ListPost} />
+            <Tab.Screen name="create post" component={CreatePost} />
+
         </Tab.Navigator> 
     )
 }
